@@ -35,6 +35,16 @@ The hosting package works with the existing graph, tools, and prompts, handling 
 
 > **Note:** The default host requires a graph state schema with a `messages` field. Check any custom state schema before choosing this path.
 
+### Preserve the public application interface
+
+Map every existing public operation to its input, caller configuration, output or side effect, and usable target access path. Include supporting workflows used before or between conversations. Selecting one exported graph does not expose the others, and retaining `langgraph.json` does not deliver the original server API.
+
+The runner selects and loads a graph. Its default Responses conversion supplies conversation messages; the default Invocations conversion also builds message-shaped graph input. Neither automatically decodes a JSON string into arbitrary graph state or forwards caller-supplied `RunnableConfig.configurable` fields. A `messages` field alone therefore does not establish compatibility. Inspect the installed SDK's request parser, input/configuration builders and output parser against the original interface before relying on the defaults.
+
+Use configuration-only hosting when those mappings preserve the required interface. Otherwise adapt request parsing, operation routing, configuration propagation and output serialization at the hosting boundary, delegating business execution to the existing graphs. Resolve the actual exported runnable or factory rather than assuming a similarly named module attribute. Validate adapted input against the original schema; changing the protocol name or disabling a compatibility check does not implement a missing conversion. Deliver and document any separately required entry points or companion services.
+
+Keep application configuration separate from platform authentication. Preserve per-request parameter semantics and validation; an authenticated user, session key or environment-wide fallback does not automatically replace an application-defined partition/configuration value. Resolve necessary mappings explicitly without inventing a new business or authorization policy.
+
 ## Prepare local configuration
 
 Make your application's configuration and credentials available before SDK and graph initialization. Create or update the root `.env` with the values your application reads. The startup command below loads it with uv's `--env-file` option rather than relying on the `env` field in `langgraph.json`.
