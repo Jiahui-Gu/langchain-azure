@@ -10,6 +10,8 @@ The examples use Python, uv, the hosted Responses protocol, and source-code depl
 
 Clients that use LangGraph Server APIs, custom HTTP routes, or Studio views need separate adaptation. See the [Responses hosting limitations](langgraph-to-foundry/02-run-locally.md#identify-the-existing-graph-entry-point).
 
+Before choosing a hosting path, identify capabilities supplied by the application's original runtime, not only by its exported graph. These can include session management, checkpoints, tool-managed state and resource lifetimes. If existing behavior depends on continuity, plan its target owner before local hosting or deployment; the [persistence guidance](langgraph-to-foundry/05-persistence-and-recovery.md#persist-graph-state-across-turns) is then part of the migration, not an optional feature to add afterward. Do not introduce state or recovery requirements that the application did not have.
+
 ## Why host your LangGraph application on Foundry?
 
 Microsoft Foundry combines agent hosting with application interfaces, enterprise services, security controls, and diagnostics and evaluation in one platform to help enterprises deliver production-quality AI agents.
@@ -25,6 +27,8 @@ Microsoft Foundry combines agent hosting with application interfaces, enterprise
 - **Diagnostics and evaluation integrated with your deployment.** Foundry connects hosted-agent execution with model and tool tracing, Application Insights, and managed evaluation. Teams can use data from real user interactions to assess execution behavior and output quality, investigate failures, validate changes, and continuously optimize their agents before and after release.
 
 ## Before you start
+
+Before applying the example, read the [application interface mapping](langgraph-to-foundry/02-run-locally.md#preserve-the-public-application-interface) and [deployment packaging](langgraph-to-foundry/03-prepare-deployment.md#prepare-runtime-dependencies) guidance, plus [state ownership](langgraph-to-foundry/05-persistence-and-recovery.md#persist-graph-state-across-turns) when the original runtime supplies required state. Do not select configuration-only hosting until the required operations, inputs and caller configuration fit its actual mappings. The example's single graph and request shape are not a replacement for your application's public interface.
 
 ### Model choice
 
