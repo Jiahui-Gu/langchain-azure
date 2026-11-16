@@ -35,14 +35,6 @@ When composing a hosting boundary, preserve the selected host's graph and stream
 
 When customizing a host, keep its documented hook contracts. In particular, Invocations `build_input` converts text to graph input; structured parser results have HITL semantics and are not an arbitrary graph-state transport. Use the supported input/configuration/output hooks rather than changing parser return types to bypass conversion. Read the [Invocations hook contracts](invocations.md#overridable-methods) or [Responses hosting interface](responses.md#overridable-methods) for the installed package before adapting the boundary.
 
-## Package the build inputs
-
-This example uses a root `requirements.txt` for its remote build. Other Python projects can use a different supported dependency-resolution path: Oryx distinguishes requirements, uv and Poetry builds using files present in the upload. A uv project must retain its matching `pyproject.toml` and `uv.lock`, or intentionally package a validated replacement manifest. See the [Oryx Python build implementation](https://github.com/microsoft/Oryx/blob/84c15f84129d698b408161ed143742b386ee42a0/src/BuildScriptGenerator/Python/PythonBashBuildSnippet.sh.tpl). Do not assume a local editable install or `uv sync` proves that the remote archive will install the same application.
-
-Inspect the archive after applying ignore rules, and verify installation from that archive in a clean environment. Keep runtime source, configuration, resources and all build inputs consumed by the selected builder. Dependency manifests and lockfiles are not caches; exclude one only when a validated replacement dependency-resolution path is packaged.
-
-Treat [upload exclusions](langgraph-to-foundry/03-prepare-deployment.md#configure-upload-exclusions) as part of that choice. Do not copy a sample's lockfile/manifests exclusions into a different dependency-resolution path.
-
 ## Verify the delivered workflow
 
 Installation, sustained host startup and successful application execution are separate gates. Use the actual deployment entry point and effective configuration, not an independently constructed graph. Exercise every preserved operation and the workflow connecting them through the delivered interface, including follow-up requests when continuity matters. Check actual downstream effects, not only HTTP success or an acknowledgement: dropped input can produce a plausible success response without performing the requested operation.
