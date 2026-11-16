@@ -33,7 +33,7 @@ The hosting package works with the existing graph, tools, and prompts, handling 
 
 > **Note:** The Responses hosting path used in this guide does not currently expose the LangGraph Agent Server runs, threads, or state APIs. Reusing the graph does not preserve those client APIs. Adapt agent invocation to the hosted Responses API and preserve the conversation identity for multi-turn clients. The Responses API provides request and response records, not equivalent access to full graph state.
 
-> **Note:** A `messages` field alone does not establish interface compatibility. Apply the walkthrough's [interface mapping](../host-langgraph-on-foundry.md#map-the-application-interface) before selecting this default path, and its [state ownership](../host-langgraph-on-foundry.md#preserve-runtime-owned-state) when the original runtime supplies required state.
+> **Note:** A `messages` field alone does not establish interface compatibility. Apply the walkthrough's [interface mapping](../host-langgraph-on-foundry.md#map-the-application-interface) before selecting this default path.
 
 ## Prepare local configuration
 

@@ -10,12 +10,6 @@ The examples use Python, uv, the hosted Responses protocol, and source-code depl
 
 Clients that use LangGraph Server APIs, custom HTTP routes, or Studio views need separate adaptation. See the [Responses hosting limitations](langgraph-to-foundry/02-run-locally.md#identify-the-existing-graph-entry-point).
 
-## Preserve runtime-owned state
-
-Inspect the documented original launch path as well as graph construction. LangGraph development/server runtimes can supply checkpointing outside the exported graph; `langgraph dev` manages persistence and rejects application-configured checkpointers. A graph loaded by another host does not inherit that runtime service. Preserve framework- and tool-managed state as well as messages, and assign each required capability a target owner with the needed lifetime. Verify that this owner applies to the graph actually serving requests. Small construction or lifecycle adaptations can be necessary to preserve behavior; they are not permission to redesign business logic, replace an established backend or migrate historical checkpoints without user intent. Keep development and hosted construction separate where their ownership rules differ.
-
-Preserve the existing backend and state semantics, including tool-managed state, not just conversation messages. Assign an explicit target owner with the required lifetime before hosting; apply it to the graph that actually serves requests. A conversation/thread identifier is a key, not a persistence implementation, and a boundary runnable does not automatically make its delegated graphs stateful. For Invocations, reusing a session does not reconstruct transcript history without a checkpointer; see [conversation and state](invocations.md#3-conversation-and-state). Follow [persistence configuration](langgraph-to-foundry/05-persistence-and-recovery.md#persist-graph-state-across-turns) when existing behavior requires it. Do not introduce storage, recovery requirements or historical checkpoint migration that the application did not have.
-
 ## Map the application interface
 
 Before choosing a hosting path, record a concrete contract map for every public operation in the application's original launch path, including workflows used before or between conversations. For each operation, identify the target artifact and an actual invocation, not only a graph symbol. Graph importability and a `messages` field prove neither request nor response compatibility.
@@ -92,7 +86,7 @@ Your local `.env` must remain outside source control and source uploads. See [Co
 
 ## Migration steps
 
-Plan required state ownership before local hosting or deployment, then complete the first four articles to prepare, test and deploy the application. Apply persistence where existing behavior requires it; unfinished-request recovery, diagnostics and evaluation remain requirements-dependent.
+Complete the first four articles to prepare, test, and deploy your application. Then use the remaining articles for persistence and recovery, diagnostics, and evaluation as your application requires.
 
 | Stage | Article | Outcome |
 | --- | --- | --- |

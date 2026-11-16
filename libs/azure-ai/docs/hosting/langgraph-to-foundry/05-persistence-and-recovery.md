@@ -1,6 +1,6 @@
 # Enable persistence and recovery
 
-Before selecting the hosting path, identify what state and work the original application retains across turns or host restarts. This article shows how to preserve messages, reports, and task progress with durable checkpoints. It then covers recovery for requests interrupted by a host failure. Plan required state ownership during migration; perform the hosted verification after the agent [runs in Foundry](04-deploy-and-verify.md). Apply only the parts that match the existing application's requirements.
+Once the agent [runs in Foundry](04-deploy-and-verify.md), decide what state and work must survive across turns or host restarts. This article shows how to preserve messages, reports, and task progress with durable checkpoints. It then covers recovery for requests interrupted by a host failure. Apply the parts that match your application's requirements.
 
 ## Before you start
 
