@@ -43,12 +43,6 @@ Inspect the archive after applying ignore rules, and verify installation from th
 
 Treat [upload exclusions](langgraph-to-foundry/03-prepare-deployment.md#configure-upload-exclusions) as part of that choice. Do not copy a sample's lockfile/manifests exclusions into a different dependency-resolution path.
 
-## Verify the delivered workflow
-
-Installation, sustained host startup and successful application execution are separate gates. Use the actual deployment entry point and effective configuration, not an independently constructed graph. Exercise every preserved operation and the workflow connecting them through the delivered interface, including follow-up requests when continuity matters. Check actual downstream effects, not only HTTP success or an acknowledgement: dropped input can produce a plausible success response without performing the requested operation.
-
-When model, tool or external-service credentials are unavailable, use disposable, external-only substitutes to check a successful local request. Keep the submitted adapter, graph construction, routing, configuration propagation and application execution real; do not stub the delegate or return expected results from the host. Keep substitutes outside production code and remove them before delivery. This verifies the hosting boundary, not cloud integration or real-provider behavior; report unavailable checks and prerequisites separately.
-
 ## Why host your LangGraph application on Foundry?
 
 Microsoft Foundry combines agent hosting with application interfaces, enterprise services, security controls, and diagnostics and evaluation in one platform to help enterprises deliver production-quality AI agents.

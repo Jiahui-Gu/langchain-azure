@@ -82,8 +82,6 @@ uv run --no-sync --env-file .env python -m langchain_azure_ai.agents.hosting.run
 
 ## Verify local execution
 
-Apply the walkthrough's [three verification gates](../host-langgraph-on-foundry.md#verify-the-delivered-workflow) through the actual delivered entry point before calling local migration complete.
-
 In another terminal, send a representative request to the local `/responses` endpoint. The default port is `8088`; adjust the URL if you configured a different port:
 
 PowerShell (Windows):
