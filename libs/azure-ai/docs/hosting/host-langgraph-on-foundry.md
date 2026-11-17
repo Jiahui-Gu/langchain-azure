@@ -41,6 +41,8 @@ When composing a hosting boundary, preserve the selected host's graph and stream
 
 When customizing a host, keep its documented hook contracts. In particular, Invocations `build_input` converts text to graph input; structured parser results have HITL semantics and are not an arbitrary graph-state transport. Use the supported input/configuration/output hooks rather than changing parser return types to bypass conversion. Read the [Invocations hook contracts](invocations.md#overridable-methods) or [Responses hosting interface](responses.md#overridable-methods) for the installed package before adapting the boundary.
 
+Verify the original workflow through the delivered hosting entry points, not only importability or readiness. Exercise each required operation and, where the existing contract requires continuity, a follow-up turn. If external services are unavailable, optional disposable substitutes may cover only those boundaries; keep hosting, graph execution and state handling real. Report blocked checks separately.
+
 ## Why host your LangGraph application on Foundry?
 
 Microsoft Foundry combines agent hosting with application interfaces, enterprise services, security controls, and diagnostics and evaluation in one platform to help enterprises deliver production-quality AI agents.
