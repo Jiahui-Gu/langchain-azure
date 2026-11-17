@@ -82,6 +82,8 @@ uv run --no-sync --env-file .env python -m langchain_azure_ai.agents.hosting.run
 
 ## Verify local execution
 
+Verify the original workflow through the delivered hosting entry points, not only importability or readiness. Exercise each required operation and, where the existing contract requires continuity, a follow-up turn. If external services are unavailable, optional disposable substitutes may cover only those boundaries; keep hosting, graph execution and state handling real. Report blocked checks separately.
+
 In another terminal, send a representative request to the local `/responses` endpoint. The default port is `8088`; adjust the URL if you configured a different port:
 
 PowerShell (Windows):
